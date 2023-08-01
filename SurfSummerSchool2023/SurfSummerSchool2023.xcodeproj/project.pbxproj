@@ -17,6 +17,7 @@
 		6EC3CA742A78F12F0033D58A /* UIImageView+ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC3CA732A78F12F0033D58A /* UIImageView+ImageLoader.swift */; };
 		6EC3CA832A78FF4F0033D58A /* SkillCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC3CA812A78FF4F0033D58A /* SkillCollectionViewCell.swift */; };
 		6EC3CA842A78FF4F0033D58A /* SkillCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6EC3CA822A78FF4F0033D58A /* SkillCollectionViewCell.xib */; };
+		6ED878F82A796CC3001A23F4 /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED878F72A796CC3001A23F4 /* AlignedCollectionViewFlowLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		6EC3CA732A78F12F0033D58A /* UIImageView+ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+ImageLoader.swift"; sourceTree = "<group>"; };
 		6EC3CA812A78FF4F0033D58A /* SkillCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillCollectionViewCell.swift; sourceTree = "<group>"; };
 		6EC3CA822A78FF4F0033D58A /* SkillCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkillCollectionViewCell.xib; sourceTree = "<group>"; };
+		6ED878F72A796CC3001A23F4 /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 			children = (
 				6EC3CA712A78F1060033D58A /* ImageLoader.swift */,
 				6EC3CA732A78F12F0033D58A /* UIImageView+ImageLoader.swift */,
+				6ED878F72A796CC3001A23F4 /* AlignedCollectionViewFlowLayout.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 				6EC3CA722A78F1060033D58A /* ImageLoader.swift in Sources */,
 				6EC3CA6E2A78E9F80033D58A /* MainModel.swift in Sources */,
 				6EC3CA742A78F12F0033D58A /* UIImageView+ImageLoader.swift in Sources */,
+				6ED878F82A796CC3001A23F4 /* AlignedCollectionViewFlowLayout.swift in Sources */,
 				6EC3CA832A78FF4F0033D58A /* SkillCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

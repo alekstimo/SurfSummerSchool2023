@@ -2,7 +2,7 @@
 //  MainViewController.swift
 //  SurfSummerSchool2023
 //
-//  Created by Кирилл Зезюков on 01.08.2023.
+//  Created by Александра Тимонова on 01.08.2023.
 //
 
 import UIKit
@@ -19,24 +19,26 @@ class MainViewController: UIViewController {
         static let freeSpace: Int = 48
     }
     
+    //MARK: - Properties
     private var model: MainModel = .createDefault()
     private var correctSkillsArray: [String] = []
     var correctState = false
     
-    //MARK: - Properties
-    
-    @IBOutlet weak var collectionViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var skillsLabel: UILabel!
+   
+    //MARK: UIView
+    @IBOutlet private weak var collectionViewHeight: NSLayoutConstraint!
+    @IBOutlet private weak var skillsLabel: UILabel!
     @IBOutlet private weak var tittleImageView: UIImageView!
     @IBOutlet private weak var fullNameLabel: UILabel!
-    @IBOutlet weak var aboutDescriptionLabel: UILabel!
-    @IBOutlet weak var aboutTitleLabel: UILabel!
-    @IBOutlet weak var correctSkillsButton: UIButton!
-    @IBOutlet weak var backgroundView: UIView!
+    @IBOutlet private weak var aboutDescriptionLabel: UILabel!
+    @IBOutlet private weak var aboutTitleLabel: UILabel!
+    @IBOutlet private weak var correctSkillsButton: UIButton!
     @IBOutlet private weak var cityLabel: UILabel!
     @IBOutlet private weak var cityMarkImageView: UIImageView!
     @IBOutlet private weak var infoLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
+    
+    //MARK: Life
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -44,6 +46,7 @@ class MainViewController: UIViewController {
         configureCollectionView()
 
     }
+    //MARK: Turn on/off correction mode
     @IBAction func correctSkillsButtonTouched(_ sender: Any) {
         if !correctState {
             correctSkillsButton.setImage(UIImage(named: "done"), for: .normal)
@@ -56,10 +59,11 @@ class MainViewController: UIViewController {
         self.view.layoutIfNeeded()
     }
 
-    
-
 }
+
+//MARK: private extension MainViewController
 private extension MainViewController {
+    
     func configure(){
        if let url = URL(string: model.imageUrlInString) {
            tittleImageView.loadImage(from: url)
@@ -81,7 +85,6 @@ private extension MainViewController {
         infoLabel.font = .systemFont(ofSize: 14)
         infoLabel.textColor = UIColor(named: "textColor")
         
-        
         aboutDescriptionLabel.font = .systemFont(ofSize: 14)
         aboutDescriptionLabel.textColor = .black
         aboutDescriptionLabel.text = model.about
@@ -96,17 +99,12 @@ private extension MainViewController {
         
         correctSkillsButton.setImage(UIImage(named: "correct"), for: .normal)
         
-        
-       // bottomSpaceFromLabelToScrollView.
-        
-//        collectionView.contentSize = CGSize(width: collectionView.bounds.width, height: CGFloat(model.skills.count * Constants.textSize + Constants.freeSpace))
     }
     
     func configureNavigationBar() {
         navigationItem.title = "Профиль"
-        navigationItem.backBarButtonItem?.tintColor  = UIColor(named: "backgroundColor")
-        self.view.backgroundColor = UIColor(named: "backgroundColor")
     }
+    
     func configureCollectionView() {
         collectionView.register(UINib(nibName: "\(SkillCollectionViewCell.self)", bundle: .main),
                                 forCellWithReuseIdentifier: "\(SkillCollectionViewCell.self)")
@@ -117,14 +115,20 @@ private extension MainViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionViewHeight.constant = collectionView.collectionViewLayout.collectionViewContentSize.height
         self.view.layoutIfNeeded()
+       
+        
+       
     }
+    
 }
 // MARK: - UICollection
 extension MainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+   
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return correctState ? model.skills.count + 1 : model.skills.count
     }
+   
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(SkillCollectionViewCell.self)", for: indexPath)
@@ -171,8 +175,10 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
                 model.skills.remove(at: indexPath.row)
                collectionView.deleteItems(at: [indexPath])
             //collectionView.heightAnchor.constraint(equalToConstant: CGFloat(CGFloat(model.skills.count + 1) * Constants.height )).isActive = true //TODO: Расчет высоты коллекции ? ОШИБКИ СЫП
+            
             collectionViewHeight.constant = collectionView.collectionViewLayout.collectionViewContentSize.height
             self.view.layoutIfNeeded()
+           
            }
 
     }
@@ -182,8 +188,8 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         }
     
         let alert = UIAlertController(title: "Добавление навыка", message: "Введите название навыка которым вы владеете", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default, handler: nil))
-        let action = UIAlertAction.init(title: "Добавить", style: .cancel, handler: { [self] action in
+        
+        let action = UIAlertAction.init(title: "Добавить", style: .default, handler: { [self] action in
             if let textField = alert.textFields?.first, let text = textField.text {
                 model.skills.append(text)
                 collectionView.reloadData()
@@ -195,9 +201,11 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
             (textField) in textField.placeholder = "Введите название"
         }
         alert.addAction(action)
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
         
     }
+    
 
 }
 

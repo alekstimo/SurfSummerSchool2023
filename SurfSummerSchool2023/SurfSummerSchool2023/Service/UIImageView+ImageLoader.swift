@@ -2,7 +2,7 @@
 //  UIImageView+ImageLoader.swift
 //  SurfSummerSchool2023
 //
-//  Created by Кирилл Зезюков on 01.08.2023.
+//  Created by Александра Тимонова on 01.08.2023.
 //
 
 import Foundation

@@ -13,7 +13,6 @@
             <connections>
                 <outlet property="aboutDescriptionLabel" destination="wL7-zp-TMr" id="ze2-Wc-dyw"/>
                 <outlet property="aboutTitleLabel" destination="aLv-Dr-1fX" id="nxS-cS-ojN"/>
-                <outlet property="backgroundView" destination="2JS-hQ-TDg" id="sol-qj-Bge"/>
                 <outlet property="cityLabel" destination="7eh-zU-lhM" id="Jd9-Mv-uDJ"/>
                 <outlet property="cityMarkImageView" destination="6b2-j1-Cgd" id="D9A-q2-3cY"/>
                 <outlet property="collectionView" destination="qsO-2u-BpU" id="kIl-To-bVl"/>
@@ -35,7 +34,7 @@
                     <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="redraw" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="hV7-t0-KPF">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="636.33333333333337"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="736.33333333333337"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2JS-hQ-TDg">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="276.33333333333331"/>
@@ -127,20 +126,15 @@
                                     </constraints>
                                 </view>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="qsO-2u-BpU">
-                                    <rect key="frame" x="0.0" y="336" width="393" height="250"/>
+                                    <rect key="frame" x="0.0" y="336.33333333333331" width="393" height="249.99999999999994"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="250" id="tez-i4-ENK"/>
                                     </constraints>
-                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="57W-br-OFI">
-                                        <size key="itemSize" width="128" height="128"/>
-                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    </collectionViewFlowLayout>
+                                    <collectionViewLayout key="collectionViewLayout" id="fcZ-z1-5dg" customClass="AlignedCollectionViewFlowLayout" customModule="SurfSummerSchool2023" customModuleProvider="target"/>
                                 </collectionView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bta-ov-Pk1">
-                                    <rect key="frame" x="0.0" y="586.33333333333337" width="393" height="50"/>
+                                    <rect key="frame" x="0.0" y="586.33333333333337" width="393" height="150"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wL7-zp-TMr">
                                             <rect key="frame" x="16.000000000000004" y="52.333333333333258" width="41.333333333333343" height="20.333333333333329"/>
@@ -160,11 +154,13 @@
                                         <constraint firstItem="wL7-zp-TMr" firstAttribute="leading" secondItem="bta-ov-Pk1" secondAttribute="leading" constant="16" id="6s0-1J-gSd"/>
                                         <constraint firstItem="wL7-zp-TMr" firstAttribute="top" secondItem="aLv-Dr-1fX" secondAttribute="bottom" constant="8" id="Kz1-fO-ozA"/>
                                         <constraint firstItem="aLv-Dr-1fX" firstAttribute="top" secondItem="bta-ov-Pk1" secondAttribute="top" constant="24" id="OWm-dN-68h"/>
+                                        <constraint firstAttribute="height" priority="999" constant="150" id="Plh-kb-pyM"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wL7-zp-TMr" secondAttribute="trailing" constant="16" id="TKu-2V-jfA"/>
                                         <constraint firstItem="aLv-Dr-1fX" firstAttribute="leading" secondItem="bta-ov-Pk1" secondAttribute="leading" constant="16" id="V9t-1G-LZD"/>
                                     </constraints>
                                 </view>
                             </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="2JS-hQ-TDg" firstAttribute="leading" secondItem="hV7-t0-KPF" secondAttribute="leading" id="9dy-Rk-nmn"/>
                                 <constraint firstItem="2JS-hQ-TDg" firstAttribute="top" secondItem="hV7-t0-KPF" secondAttribute="top" id="fsw-Ju-ZjA"/>
@@ -173,7 +169,7 @@
                             </constraints>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="backgroundColor"/>
                     <constraints>
                         <constraint firstItem="hV7-t0-KPF" firstAttribute="leading" secondItem="Wu2-Df-2BL" secondAttribute="leading" id="0wE-i1-TBS"/>
                         <constraint firstAttribute="trailing" secondItem="hV7-t0-KPF" secondAttribute="trailing" id="RdK-nW-0Jt"/>

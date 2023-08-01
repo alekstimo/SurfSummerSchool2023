@@ -2,20 +2,25 @@
 //  SkillCollectionViewCell.swift
 //  SurfSummerSchool2023
 //
-//  Created by Кирилл Зезюков on 01.08.2023.
+//  Created by Александра Тимонова on 01.08.2023.
 //
 
 import UIKit
 
 class SkillCollectionViewCell: UICollectionViewCell {
 
+    //MARK: UIView
     @IBOutlet private weak var titleLabel: UILabel!
+    
+    //MARK: Properties
     var deleteButton: UIButton!
     var title: String = "" {
         didSet {
             titleLabel.text = title
         }
     }
+    
+    //MARK: Life
     override func awakeFromNib() {
         super.awakeFromNib()
         configure()
@@ -25,6 +30,8 @@ class SkillCollectionViewCell: UICollectionViewCell {
         title = ""
         correctionModeOff()
     }
+    
+    //MARK: Show and hide delete button
     func correctionModeOn() {
         deleteButton = UIButton(frame: CGRect(x: self.frame.width - 24, y: titleLabel.frame.minY + 2, width: 14, height: 14))
         deleteButton.setImage(UIImage(named: "delete"), for: .normal)
@@ -38,6 +45,7 @@ class SkillCollectionViewCell: UICollectionViewCell {
     }
 }
 
+//MARK: Private extension
 private extension SkillCollectionViewCell {
     func configure() {
         titleLabel.textColor = .black
