@@ -38,7 +38,7 @@ class MainViewController: UIViewController {
     @IBOutlet private weak var infoLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     
-    //MARK: Life
+    //MARK: Lifeсyrcle
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()

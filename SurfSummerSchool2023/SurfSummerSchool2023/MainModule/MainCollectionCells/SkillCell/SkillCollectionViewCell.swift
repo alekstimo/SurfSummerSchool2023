@@ -20,7 +20,7 @@ class SkillCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    //MARK: Life
+    //MARK: Lifeсyrcle
     override func awakeFromNib() {
         super.awakeFromNib()
         configure()
