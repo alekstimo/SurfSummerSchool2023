@@ -20,8 +20,9 @@
                 <outlet property="correctSkillsButton" destination="VJV-6z-NKc" id="OCS-UR-QWI"/>
                 <outlet property="fullNameLabel" destination="xdv-jX-ZpK" id="RmE-yM-jm4"/>
                 <outlet property="infoLabel" destination="NiC-oK-F0P" id="JsH-zc-QMJ"/>
+                <outlet property="scrollView" destination="Wu2-Df-2BL" id="lq8-YH-4KL"/>
                 <outlet property="skillsLabel" destination="kaF-mG-E8a" id="FiC-0L-9gh"/>
-                <outlet property="tittleImageView" destination="NwB-gQ-sUq" id="5Fi-6L-Ot8"/>
+                <outlet property="titleImageView" destination="NwB-gQ-sUq" id="5Fi-6L-Ot8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -170,6 +171,7 @@
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" name="backgroundColor"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstItem="hV7-t0-KPF" firstAttribute="leading" secondItem="Wu2-Df-2BL" secondAttribute="leading" id="0wE-i1-TBS"/>
                         <constraint firstAttribute="trailing" secondItem="hV7-t0-KPF" secondAttribute="trailing" id="RdK-nW-0Jt"/>

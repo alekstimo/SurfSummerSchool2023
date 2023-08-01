@@ -23,12 +23,14 @@ class MainViewController: UIViewController {
     private var model: MainModel = .createDefault()
     private var correctSkillsArray: [String] = []
     var correctState = false
+    let woble = CAKeyframeAnimation(keyPath: "transform.rotation")
     
    
     //MARK: UIView
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet private weak var collectionViewHeight: NSLayoutConstraint!
     @IBOutlet private weak var skillsLabel: UILabel!
-    @IBOutlet private weak var tittleImageView: UIImageView!
+    @IBOutlet private weak var titleImageView: UIImageView!
     @IBOutlet private weak var fullNameLabel: UILabel!
     @IBOutlet private weak var aboutDescriptionLabel: UILabel!
     @IBOutlet private weak var aboutTitleLabel: UILabel!
@@ -38,38 +40,68 @@ class MainViewController: UIViewController {
     @IBOutlet private weak var infoLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     
+   
     //MARK: Lifeсyrcle
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         configureNavigationBar()
         configureCollectionView()
-
+        configureWooble()
     }
     //MARK: Turn on/off correction mode
     @IBAction func correctSkillsButtonTouched(_ sender: Any) {
-        if !correctState {
-            correctSkillsButton.setImage(UIImage(named: "done"), for: .normal)
-        } else {
-            correctSkillsButton.setImage(UIImage(named: "correct"), for: .normal)
-        }
-        correctState = !correctState
-        collectionView.reloadData()
-        collectionViewHeight.constant = collectionView.collectionViewLayout.collectionViewContentSize.height
-        self.view.layoutIfNeeded()
+      
+            if !correctState {
+                correctSkillsButton.setImage(UIImage(named: "done"), for: .normal)
+            } else {
+                correctSkillsButton.setImage(UIImage(named: "correct"), for: .normal)
+            }
+            correctState = !correctState
+            collectionView.reloadData()
+            collectionViewHeight.constant = collectionView.collectionViewLayout.collectionViewContentSize.height
+            self.view.layoutIfNeeded()
+        
     }
+    
+   
+
+}
+//MARK:  UIScrollViewDelegate
+extension MainViewController: UIScrollViewDelegate {
+    //Avatar animation
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y
+        let scaleFactor: CGFloat = 1 - yOffset / 200
+        if yOffset > -0.4 {
+            titleImageView.transform = CGAffineTransform(scaleX: scaleFactor, y: scaleFactor)
+        }
+        else {
+            titleImageView.transform = CGAffineTransform(rotationAngle:  (1 + yOffset)/10)
+        }
+        }
 
 }
 
 //MARK: private extension MainViewController
 private extension MainViewController {
     
+    //Cells wobling animation
+    func configureWooble() {
+        
+        woble.values = [0.0, -0.025,0.0,0.025,0.0]
+        woble.keyTimes = [0.0, 0.25,0.5,0.75,1.0]
+        woble.duration = 0.4
+        woble.isAdditive = true
+        woble.repeatCount = Float.greatestFiniteMagnitude
+        
+    }
     func configure(){
        if let url = URL(string: model.imageUrlInString) {
-           tittleImageView.loadImage(from: url)
+           titleImageView.loadImage(from: url)
         }
-        tittleImageView.layer.cornerRadius =  tittleImageView.frame.size.width / 2
-        tittleImageView.clipsToBounds = true
+        titleImageView.layer.cornerRadius =  titleImageView.frame.size.width / 2
+        titleImageView.clipsToBounds = true
         
         fullNameLabel.text = model.fullName
         fullNameLabel.font = .systemFont(ofSize: 24, weight: .bold)
@@ -99,6 +131,7 @@ private extension MainViewController {
         
         correctSkillsButton.setImage(UIImage(named: "correct"), for: .normal)
         
+        scrollView.delegate = self
     }
     
     func configureNavigationBar() {
@@ -134,13 +167,17 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(SkillCollectionViewCell.self)", for: indexPath)
         if let cell = cell as? SkillCollectionViewCell {
             if indexPath.row < model.skills.count {
+                
+               
                 cell.title = model.skills[indexPath.row]
                 if correctState {
                     cell.correctionModeOn()
+                    cell.layer.add(woble, forKey: "wooble")
                     cell.deleteButton.addTarget(self, action:  #selector(self.deleteButtonTapped(_:)), for: .touchUpInside)
                     
                 } else {
                     cell.correctionModeOff()
+                    cell.layer.removeAllAnimations()
                 }
             } else {
                 cell.title = "+"
@@ -171,7 +208,6 @@ extension MainViewController: UICollectionViewDataSource, UICollectionViewDelega
     @objc func deleteButtonTapped(_ sender: UIButton){
         if let cell = sender.superview as? SkillCollectionViewCell,
               let indexPath = collectionView.indexPath(for: cell) {
-            
                 model.skills.remove(at: indexPath.row)
                collectionView.deleteItems(at: [indexPath])
             //collectionView.heightAnchor.constraint(equalToConstant: CGFloat(CGFloat(model.skills.count + 1) * Constants.height )).isActive = true //TODO: Расчет высоты коллекции ? ОШИБКИ СЫП

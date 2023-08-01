@@ -19,6 +19,7 @@ class SkillCollectionViewCell: UICollectionViewCell {
             titleLabel.text = title
         }
     }
+   
     
     //MARK: Lifeсyrcle
     override func awakeFromNib() {
@@ -28,20 +29,23 @@ class SkillCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         title = ""
-        correctionModeOff()
+        if let button = deleteButton {
+            button.removeFromSuperview()
+        }
     }
     
     //MARK: Show and hide delete button
     func correctionModeOn() {
         deleteButton = UIButton(frame: CGRect(x: self.frame.width - 24, y: titleLabel.frame.minY + 2, width: 14, height: 14))
         deleteButton.setImage(UIImage(named: "delete"), for: .normal)
-        
         self.addSubview(deleteButton)
+        
     }
     func correctionModeOff(){
         if let button = deleteButton {
             button.removeFromSuperview()
         }
+        
     }
 }
 
